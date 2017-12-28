@@ -92,6 +92,13 @@ def has_request_arg(fn):
     return found
 
 
+"""
+RequestHandler目的就是从URL函数中分析其需要接收的参数，
+从request中获取必要的参数，调用URL函数，然后把结果转换为web.Response对象，
+这样，就完全符合aiohttp框架的要求
+"""
+
+
 class RequestHandler(object):
 
     def __init__(self, app, fn):
@@ -160,6 +167,11 @@ def add_static(app):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
     app.router.add_static('/static/', path)
     logging.info('add static %s => %s' % ('/static/', path))
+
+
+"""
+用来注册一个URL处理函数
+"""
 
 
 def add_route(app, fn):
